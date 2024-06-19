@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Contact App</title>
+  </head>
+  <body>
+    <header>
+      <nav><h2>Contact App</h2></nav>
+    </header>
+    <main>
+      <div>
+        <form action="/contacts" method="post">
+          <div class="input-form">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" />
+          </div>
+          <div class="input-form">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="number" name="phoneNumber" id="phoneNumber" />
+          </div>
+          <button type="submit">Save</button>
+        </form>
+      </div>
+      <div>
+        <ul>
+          <div class="list-title">
+            <div>
+              <h4>Name</h4>
+              <h4>Phone Number</h4>
+            </div>
+            <h4>Action</h4>
+          </div>
+
+          <% if(data.length == 0){%>
+            <p align="center">Data doesn`t exist</p>
+          <%}%>
+          <% data.forEach(function(contact){%>
+
+          <div class="list-container">
+            <div class="list-content">
+              <p><%=contact.name %></p>
+              <p><%=contact.phoneNumber%></p>
+            </div>
+            <div class="list-action">
+              <a href="/contacts/<%=contact.id%>/">Edit</a>
+              <form action="/contacts/<%=contact._id %>?_method=DELETE" method="post">
+                <button>Delete</button>
+              </form>
+            </div>
+          </div>
+
+          <%})%>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>
